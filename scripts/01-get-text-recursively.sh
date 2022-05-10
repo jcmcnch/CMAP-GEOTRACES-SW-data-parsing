@@ -18,7 +18,7 @@ for item in `cut -f2 results/00-links-BODC.tsv`; do
 	scrapedText=`./scripts/beautifulsoup-gettext.py | grep -z -o -P '(?<=Acquisition description)(?s).*(?=References Cited)' | tr '\n' ' ' | tr -d '\0'`
 
 	#print to tsv
-	printf "$item\t$scrapedText\n" > $outfile
+	printf "$item\t%s\n" "$scrapedText" >> $outfile
 
 	#remove any stray webpages
 	rm index.html 2> /dev/null
